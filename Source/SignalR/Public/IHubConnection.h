@@ -144,7 +144,7 @@ public:
     FORCEINLINE void Send(const FString& EventName, ArgTypes... Arguments)
     {
         static_assert(TAnd<TIsConstructible<FSignalRValue, ArgTypes>...>::Value, "Invalid argument type passed to IHubConnection::Send");
-        Send(EventName, TArray<FSignalRValue> { MoveTemp(Arguments)... });
+        Send(EventName, TArray<FSignalRValue> { FSignalRValue(Arguments)... });
     }
 
 protected:
